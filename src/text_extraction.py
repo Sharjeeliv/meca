@@ -35,7 +35,7 @@ def get_doi(text):
 
     if matches is None:
         # print(f"\033[1;31mNo regex match, text dump:\033[0;0m\n")
-        return False
+        return None
 
     doi = clean_doi(matches.group(0))
     # print(f"\033[1;32mRegex matches, DOI found:\033[0;0m {doi}\n")
