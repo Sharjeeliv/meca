@@ -1,5 +1,5 @@
 import os
-import time
+import shutil
 
 
 def search_pdfs(path: str) -> [str]:  # Takes path input and returns a list of names
@@ -8,7 +8,6 @@ def search_pdfs(path: str) -> [str]:  # Takes path input and returns a list of n
         if file.endswith('.pdf'):
             pdf_files.append(path + "/" + file)
             # print(f"{file} is a pdf")
-
     return pdf_files
 
 
@@ -16,16 +15,10 @@ def move_pdf(pdf_path: str):
     try:
         dest = os.getcwd() + "/manual"
         pdf_name = pdf_path.rsplit('/', 1)[1]
-        if os.path.exists(dest):
-            os.replace(pdf_path, dest + '/' + pdf_name)
-        else:
+        if os.path.exists(dest):  # Move to Manual search folder
+            shutil.copy2(pdf_path, dest + '/' + pdf_name)
+        else:  # Create Manual search folder
             os.mkdir(dest)
-            os.replace(pdf_path, dest + '/' + pdf_name)
+            shutil.copy2(pdf_path, dest + '/' + pdf_name)
     except FileNotFoundError:
-        print("Something Not found")
-
-
-if __name__ == '__main__':
-    move_pdf('/Users/sharjeelmustafa/Documents/Development/Python/Projects/zotero_tool/pdfs/Argyris (1960)_theory and '
-             'method, understanding OB.pdf')
-    pass
+        print("File to move was not found")

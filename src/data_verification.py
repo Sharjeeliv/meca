@@ -5,13 +5,17 @@ from utils import move_pdf
 cr = Crossref()
 
 
+def get_subtitle(message):
+    return ": " + message.get('subtitle')[0] if len(message.get('subtitle')) else ""
+
+
 def get_crossref_work(pdf_data):
     doi, pdf_path = pdf_data
 
     pdf_metadata = {}
     try:
         work = cr.works(ids=doi)
-        pdf_metadata['title'] = work.get('message').get('title')[0]
+        pdf_metadata['title'] = work.get('message').get('title')[0] + get_subtitle(work.get('message'))
         pdf_metadata['publisher'] = work.get('message').get('publisher')
         pdf_metadata['issue'] = work.get('message').get('issue')
         pdf_metadata['volume'] = work.get('message').get('volume')
@@ -31,4 +35,4 @@ def get_crossref_work(pdf_data):
     except requests.exceptions.HTTPError:
         print(f"Error verifying for doi: {doi}")
         move_pdf(pdf_path)
-    print("\n")
+    return

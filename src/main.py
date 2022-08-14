@@ -2,7 +2,7 @@
 # It will be replaced with a gui controller
 from src.utils import search_pdfs, move_pdf
 from src.text_extraction import text_extract, ocr_extract
-from src.verification import get_crossref_work
+from src.data_verification import get_crossref_work
 import time
 import concurrent.futures
 from zotero_entry import create_zotero_entry
@@ -32,7 +32,7 @@ def filter_extractions(pdf_data):
 
 def app():
     start = time.time()
-    pdfs = search_pdfs('/Users/sharjeelmustafa/Documents/Development/Python/Projects/zotero_tool/pdfs')
+    pdfs = search_pdfs('/Users/sharjeelmustafa/Documents/03 Projects/Development/zotero_tool/pdfs')
 
     pdfs_data = filter(lambda result: filter_extractions(result), doi_extraction(pdfs))
     pdfs_metadata = [get_crossref_work(pdf_data) for pdf_data in pdfs_data]  # Iterator object

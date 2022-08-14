@@ -12,16 +12,13 @@ clean = re.compile(r"(20\d\d|[.a-z])+$", re.IGNORECASE | re.MULTILINE)
 def text_extract(pdf_name):
     _, file_name = os.path.split(pdf_name)
     # print(f"\033[1;36mTXT \033[1;34m{file_name}\033[0;0m")  # For logging print name
-
     with open(pdf_name, "rb") as file:
         reader = PyPDF2.PdfFileReader(file, strict=False)
-
         try:
             first_page = reader.getPage(0)
             text = first_page.extractText()
         except Exception:
             text = ""
-
         return get_doi(str(text))
 
 
@@ -32,11 +29,9 @@ def clean_doi(doi):
 
 def get_doi(text):
     matches = re.search(regex, text, re.IGNORECASE | re.MULTILINE)
-
     if matches is None:
         # print(f"\033[1;31mNo regex match, text dump:\033[0;0m\n")
         return None
-
     doi = clean_doi(matches.group(0))
     # print(f"\033[1;32mRegex matches, DOI found:\033[0;0m {doi}\n")
     return doi
