@@ -3,6 +3,7 @@ from text_processing import format_title_to_apa
 
 zot = zotero.Zotero(9079397, 'user', 'hLcW1Prkx80idK3qeYB5ev0u')  # User entered key
 
+
 def create_zotero_entry(pdf_metadata):
     if pdf_metadata is None:
         print('Metadata is None')
@@ -28,11 +29,11 @@ def create_zotero_entry(pdf_metadata):
     response = zot.create_items([item_entry])  # create the entry in zotero
     file = [pdf_metadata.get('path')]
 
-    #print(response)
+    # print(response)
 
     # Upload corresponding file to zotero
-    # try:
-    #     zot.upload_attachments(
-    #         zot.attachment_simple(file, response.get('successful').get('0').get('key')))
-    # except TypeError:
-    #     print("Ignoring TypeError: Because the API uses a string for accessing a list")
+    try:
+        zot.upload_attachments(
+            zot.attachment_simple(file, response.get('successful').get('0').get('key')))
+    except TypeError:
+        print("Ignoring TypeError: Because the API uses a string for accessing a list")
