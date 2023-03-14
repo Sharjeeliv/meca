@@ -27,7 +27,6 @@ def filter_extractions(pdf_data):
     doi, pdf_path = pdf_data
     if doi is not None: return True
     #move_pdf(pdf_path)
-    print("\nINVALID AT FILTER\n")
     return False
 
 

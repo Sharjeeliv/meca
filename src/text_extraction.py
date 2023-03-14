@@ -1,7 +1,7 @@
 import os
 import re
 import pytesseract
-import PyPDF2
+from PyPDF2 import PdfReader
 from pdf2image import convert_from_path
 from params import general
 
@@ -14,10 +14,10 @@ def text_extract(pdf_name):
     _, file_name = os.path.split(pdf_name)
     # print(f"\033[1;36mTXT \033[1;34m{file_name}\033[0;0m")  # For logging print name
     # with open(pdf_name, "rb") as file:
-    reader = PyPDF2.PdfReader(pdf_name, strict=False)
     try:
-        first_page = reader.getPage(0)
-        text = first_page.extractText()
+        reader = PdfReader(pdf_name, strict=False)
+        first_page = reader.pages[0]
+        text = first_page.extract_text()
     except Exception:
         text = ""
     return get_doi(str(text))

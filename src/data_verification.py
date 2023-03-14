@@ -34,6 +34,5 @@ def get_crossref_work(pdf_data):
 
     except requests.exceptions.HTTPError:
         print(f"Error verifying for doi: {doi}")
-        print("\nINVALID AT VERIFICATION\n")
         #move_pdf(pdf_path)
     return
