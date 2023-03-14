@@ -25,8 +25,18 @@ def doi_extraction(pdfs):
 def filter_extractions(pdf_data):
     doi, pdf_path = pdf_data
     if doi is not None: return True
-    move_pdf(pdf_path)
+    #move_pdf(pdf_path)
+    print("\nINVALID AT FILTER\n")
     return False
+
+
+def api(files: list):
+    start = time.time()
+    pdfs_data = filter(lambda result: filter_extractions(result), doi_extraction(files))
+    pdfs_metadata = [get_crossref_work(pdf_data) for pdf_data in pdfs_data]  # Iterator object
+    [create_zotero_entry(pdf_metadata) for pdf_metadata in pdfs_metadata]
+    end = time.time()
+    print(f"Time to complete: {round(end - start, 2)}s")
 
 
 def app():
