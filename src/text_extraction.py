@@ -3,7 +3,7 @@ import re
 import pytesseract
 from PyPDF2 import PdfReader
 from pdf2image import convert_from_path
-from params import general
+from ..src.params import general
 
 pytesseract.pytesseract.tesseract_cmd = general['tesseract_path']
 regex = general["regex"]

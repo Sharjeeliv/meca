@@ -1,6 +1,6 @@
 from pyzotero import zotero
-from text_processing import format_title_to_apa
-from params import general
+from ..src.text_processing import format_title_to_apa
+from ..src.params import general
 
 zot = zotero.Zotero(general['zotero_lib_id'], 'user', general['zotero_api_key'])
 

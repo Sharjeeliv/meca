@@ -1,10 +1,10 @@
 # This file is used to tests the other functionalities
 # It will be replaced with a gui controller
-from utils import search_pdfs, move_pdf
-from text_extraction import text_extract, ocr_extract
-from data_verification import get_crossref_work
-from zotero_entry import create_zotero_entry
-from params import general
+from ..src.utils import search_pdfs, move_pdf
+from ..src.text_extraction import text_extract, ocr_extract
+from ..src.data_verification import get_crossref_work
+from ..src.zotero_entry import create_zotero_entry
+from ..src.params import general
 
 import time
 import concurrent.futures

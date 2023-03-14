@@ -1,6 +1,6 @@
 import requests.exceptions
 from habanero import Crossref
-from utils import move_pdf
+from ..src.utils import move_pdf
 
 cr = Crossref()
 
