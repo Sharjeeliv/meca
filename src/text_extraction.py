@@ -13,14 +13,14 @@ clean = re.compile(r"(20\d\d|[.a-z])+$", re.IGNORECASE | re.MULTILINE)
 def text_extract(pdf_name):
     _, file_name = os.path.split(pdf_name)
     # print(f"\033[1;36mTXT \033[1;34m{file_name}\033[0;0m")  # For logging print name
-    with open(pdf_name, "rb") as file:
-        reader = PyPDF2.PdfFileReader(file, strict=False)
-        try:
-            first_page = reader.getPage(0)
-            text = first_page.extractText()
-        except Exception:
-            text = ""
-        return get_doi(str(text))
+    # with open(pdf_name, "rb") as file:
+    reader = PyPDF2.PdfReader(pdf_name, strict=False)
+    try:
+        first_page = reader.getPage(0)
+        text = first_page.extractText()
+    except Exception:
+        text = ""
+    return get_doi(str(text))
 
 
 def clean_doi(doi):
