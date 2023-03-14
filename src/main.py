@@ -17,7 +17,6 @@ def extract_doi_from_pdf(pdf):
 
 
 def doi_extraction(pdfs):
-
     with concurrent.futures.ThreadPoolExecutor() as executor:
         results = executor.map(extract_doi_from_pdf, pdfs)
         return results
@@ -26,18 +25,18 @@ def doi_extraction(pdfs):
 def filter_extractions(pdf_data):
     doi, pdf_path = pdf_data
     if doi is not None: return True
-    #move_pdf(pdf_path)
+    # move_pdf(pdf_path)
     return False
 
 
-def api(files: list):
+def api(files: list, lib_key: str, lib_id: int):
+    general['zotero_api_key'], general['zotero_lib_id'] = lib_key, lib_id
     start = time.time()
     pdfs_data = filter(lambda result: filter_extractions(result), doi_extraction(files))
     pdfs_metadata = [get_crossref_work(pdf_data) for pdf_data in pdfs_data]  # Iterator object
     [create_zotero_entry(pdf_metadata) for pdf_metadata in pdfs_metadata]
     end = time.time()
     print(f"Time to complete: {round(end - start, 2)}s")
-
 
 
 def app():
@@ -57,4 +56,3 @@ def app():
 
 if __name__ == '__main__':
     app()
-
