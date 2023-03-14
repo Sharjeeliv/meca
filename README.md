@@ -19,7 +19,7 @@ The application is developed in python using a layered architecture for
 maintainability and extensibility. It consists of text extraction, data verification, text processing, and zotero entry as layers.
 </p>
 
-#### Text Extraction
+`Text Extraction`
 <p>
 This layer uses Py2PDF for native text extraction and 
 PyTesseract for optical character recognition (OCR) if the former 
@@ -27,7 +27,7 @@ fails to extract a DOI. The program identifies a DOI
 using a Regex created by CrossRef with a 99% accuracy.
 </p>
 
-#### Data Verification
+`Data Verification`
 <p>
 This layer submits the DOI to CrossRef 
 (a database of verified article metadata) 
@@ -36,14 +36,14 @@ fails the DOI is rejected to maintain the integrity of the
 system. 
 </p>
 
-#### Text Processing
+`Text Processing`
 <p>
 This layer formats the fetched metadata according to APA.
 It uses NLTK to extract parts of speech, identify nouns 
 and apply the APA rules.
 </p>
 
-#### Zotero Entry
+`Zotero Entry`
 <p>
 This layer receives the formatted data and packages it into
 an Zotero article format. It then bundles it with the file 
