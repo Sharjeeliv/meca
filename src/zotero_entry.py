@@ -1,7 +1,8 @@
 from pyzotero import zotero
 from text_processing import format_title_to_apa
+from params import general
 
-zot = zotero.Zotero(9079397, 'user', 'hLcW1Prkx80idK3qeYB5ev0u')  # User entered key
+zot = zotero.Zotero(general['zotero_lib_id'], 'user', general['zotero_api_key'])
 
 
 def create_zotero_entry(pdf_metadata):
