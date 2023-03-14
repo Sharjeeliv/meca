@@ -39,6 +39,7 @@ def api(files: list):
     print(f"Time to complete: {round(end - start, 2)}s")
 
 
+
 def app():
     # Dynamic way to input all credentials and then store them, CR key, Zotero address, pdf path, tesseract path
     # input_path = sys.argv[1]
