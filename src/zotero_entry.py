@@ -10,6 +10,10 @@ def create_zotero_entry(pdf_metadata):
         print('Metadata is None')
         return
 
+    if zot.items(doi=pdf_metadata.get('doi')):
+        print("Article already exists, skipping entry")
+        return
+
     item_entry = zot.item_template('journalArticle')
     # Input metadate directly from received dictionary
     item_entry['title'] = format_title_to_apa(pdf_metadata.get('title'))
